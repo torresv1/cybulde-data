@@ -8,7 +8,7 @@ DATA_UTILS_LOGGER = get_logger(Path(__file__).name)
 
 
 def is_dvc_initialized() -> bool:
-    return (Path.cwd() / ".dvc").exists()
+    return (Path().cwd() / ".dvc").exists()
 
 
 def initialize_dvc() -> None:
@@ -19,7 +19,7 @@ def initialize_dvc() -> None:
     DATA_UTILS_LOGGER.info("Initializing DVC...")
     run_shell_command("dvc init")
     run_shell_command("dvc config core.analytics false")
-    run_shell_command("dvc config core.auto_stages true")
+    run_shell_command("dvc config core.autostage true")
     run_shell_command("git add .dvc")
     run_shell_command("git commit -nm 'Initialized DVC'")
 
@@ -33,7 +33,7 @@ def initialize_dvc_storage(remote_name: str, remote_url: str) -> None:
             f"git commit -nm 'Configured remote storage at: {remote_url}'"
         )
     else:
-        DATA_UTILS_LOGGER.info("DVC remote was already initialized.")
+        DATA_UTILS_LOGGER.info("DVC storage was already initialized.")
         return
 
 
