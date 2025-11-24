@@ -60,7 +60,7 @@ def commit_to_dvc(dvc_raw_data_folder: str, dvc_remote_name: str) -> None:
         f"--remote {dvc_remote_name}"
     )
     run_shell_command("git push --follow-tags")
-    run_shell_command("dvc push -f --tags")
+    run_shell_command("git push -f --tags")
 
 
 def make_new_data_version(
